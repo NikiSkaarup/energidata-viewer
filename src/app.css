@@ -1,60 +1,41 @@
-@import '@fontsource/fira-mono';
-
 :root {
 	font-family: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	--font-mono: 'Fira Mono', monospace;
-	--pure-white: #ffffff;
-	--primary-color: #b9c6d2;
-	--secondary-color: #d0dde9;
-	--tertiary-color: #edf0f8;
-	--accent-color: #ff3e00;
+	--font-mono: monospace;
+	--pure-white: #fafafafa;
+	--primary-color: #2d3033;
+	--secondary-color: #52585e;
+	--tertiary-color: #534963;
+	--accent-color: #a05ff5;
 	--heading-color: rgba(0, 0, 0, 0.7);
-	--text-color: #444444;
+	--text-color: #f8f8f8;
 	--background-without-opacity: rgba(255, 255, 255, 0.7);
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
 }
 
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	box-sizing: border-box;
+}
+
 body {
 	min-height: 100vh;
-	margin: 0;
 	background-color: var(--primary-color);
-	background: linear-gradient(
-		180deg,
-		var(--primary-color) 0%,
-		var(--secondary-color) 10.45%,
-		var(--tertiary-color) 41.35%
-	);
-}
-
-body::before {
-	content: '';
-	width: 80vw;
-	height: 100vh;
-	position: absolute;
-	top: 0;
-	left: 10vw;
-	z-index: -1;
-	background: radial-gradient(
-		50% 50% at 50% 50%,
-		var(--pure-white) 0%,
-		rgba(255, 255, 255, 0) 100%
-	);
-	opacity: 0.05;
-}
-
-#svelte {
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
+	color: var(--text-color);
 }
 
 h1,
 h2,
 p {
 	font-weight: 400;
-	color: var(--heading-color);
 }
 
 p {
@@ -76,7 +57,7 @@ h1 {
 }
 
 h2 {
-	font-size: 1rem;
+	font-size: 1.25rem;
 }
 
 pre {
@@ -91,7 +72,8 @@ pre {
 }
 
 input,
-button {
+button,
+select {
 	font-size: inherit;
 	font-family: inherit;
 }

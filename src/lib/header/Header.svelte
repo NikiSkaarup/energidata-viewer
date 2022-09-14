@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import logo from './svelte-logo.svg';
+	import githubLogo from './GitHub-Mark-Light-32px.png';
 </script>
 
 <header>
@@ -11,27 +12,17 @@
 	</div>
 
 	<nav data-sveltekit-prefetch>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-		</svg>
 		<ul>
 			<li class:active={$page.url.pathname === '/'}>
-				<a href="/">Home</a>
-			</li>
-			<li class:active={$page.url.pathname === '/about'}>
-				<a href="/about">About</a>
-			</li>
-			<li class:active={$page.url.pathname === '/todos'}>
-				<a href="/todos">Todos</a>
+				<a href="/">Explorer</a>
 			</li>
 		</ul>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-		</svg>
 	</nav>
 
 	<div class="corner">
-		<!-- TODO put something else here? github link? -->
+		<a href="https://github.com/NikiSkaarup/energidata-viewer">
+			<img src={githubLogo} alt="github logo" />
+		</a>
 	</div>
 </header>
 
@@ -42,8 +33,8 @@
 	}
 
 	.corner {
-		width: 3em;
-		height: 3em;
+		width: 3rem;
+		height: 3rem;
 	}
 
 	.corner a {
@@ -55,8 +46,8 @@
 	}
 
 	.corner img {
-		width: 2em;
-		height: 2em;
+		width: 2rem;
+		height: 2rem;
 		object-fit: contain;
 	}
 
