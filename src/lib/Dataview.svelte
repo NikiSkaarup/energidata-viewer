@@ -1,23 +1,34 @@
 <script lang="ts">
-	import { name } from './DatasetStore';
+	import { item } from './DatasetStore';
 	import type { dataset } from './DatasetType';
 
 	let datasetValue: dataset | null = null;
 
 	type record = {};
 
+	type resp = {
+		total: number;
+		limit: number;
+		dataset: string;
+		records: record[];
+	};
+
 	let records: record[] = [];
 	let displayed_records: record[] = [];
 	$: displayed_records = records;
+	let respValue: resp | null = null;
+	let respValue_reactive: resp | null = null;
+	$: respValue_reactive = respValue;
+	$: records = respValue?.records ?? [];
 
-	const unsubscribe = name.subscribe((value) => {
+	const unsubscribe = item.subscribe((value) => {
 		datasetValue = value;
 		if (value === null) return;
 		const url = `https://api.energidataservice.dk/Dataset/${value.datasetName}?timezone=UTC`;
 
 		fetch(url)
 			.then((resp) => resp.json())
-			.then((json) => (records = json as record[]))
+			.then((json) => (respValue = json as resp))
 			.catch((e) => console.log(e));
 
 		// disable scrolling
@@ -30,7 +41,9 @@
 
 	function clearValue(event: MouseEvent) {
 		if (event.target !== document.querySelector('#modal-backdrop-dataview')) return;
-		name.set(null);
+		item.set(null);
+		records = [];
+		respValue_reactive = null;
 
 		// re-enable scrolling
 		const scrollTop = Math.abs(parseInt(document.documentElement.style.top, 10));
@@ -45,6 +58,14 @@
 	<div id="modal-backdrop-dataview" class="backdrop" on:click={clearValue}>
 		<div class="modal">
 			<h2>{datasetValue.datasetName} data</h2>
+
+			{#if respValue_reactive === null}
+				<p>Loading...</p>
+			{/if}
+			{#if respValue_reactive !== null}
+				<p>some graph</p>
+				<p>{records.length}</p>
+			{/if}
 		</div>
 	</div>
 {/if}

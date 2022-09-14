@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { name } from './DatasetStore';
+	import { item } from './DatasetStore';
 	type ds = {
 		datasetName: string;
 		title: string;
@@ -19,7 +19,7 @@
 	const url = `https://api.energidataservice.dk/Dataset/${dataset.datasetName}?timezone=UTC`;
 
 	function openModal() {
-		name.set(dataset);
+		item.set(dataset);
 	}
 </script>
 
