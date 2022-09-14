@@ -1,13 +1,7 @@
 <script lang="ts">
 	import Dataset from './Dataset.svelte';
-
-	type dataset = {
-		datasetName: string;
-		title: string;
-		description: string;
-		organizationName: string;
-		lastUpdate: string;
-	};
+	import type { dataset } from './DatasetType';
+	import Dataview from './Dataview.svelte';
 
 	let datasets: dataset[] = [];
 
@@ -33,6 +27,7 @@
 		{/each}
 	</ul>
 </div>
+<Dataview />
 
 <style>
 	div {

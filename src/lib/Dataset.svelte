@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { name } from './DatasetStore';
 	type ds = {
 		datasetName: string;
 		title: string;
@@ -14,24 +15,26 @@
 		lastUpdate: '',
 		organizationName: ''
 	};
+
+	const url = `https://api.energidataservice.dk/Dataset/${dataset.datasetName}?timezone=UTC`;
+
+	function openModal() {
+		name.set(dataset);
+	}
 </script>
 
 <li class="item">
 	<p class="name">
-		<a
-			class="ellipsis"
-			href="https://api.energidataservice.dk/Dataset/{dataset.datasetName}"
-			title={dataset.datasetName}
-		>
+		<a class="ellipsis" href={url} title={dataset.datasetName}>
 			{dataset.datasetName}
 		</a>
 	</p>
 	<p class="ellipsis organizationname" title={dataset.organizationName}>
 		{dataset.organizationName}
 	</p>
-	<p class="ellipsis title" title={dataset.title}>{dataset.title.substring(0, 66)}</p>
+	<p class="ellipsis title" title={dataset.title}>{dataset.title}</p>
 	<p class="lastupdate">{new Date(dataset.lastUpdate).toUTCString()}</p>
-	<button class="btn">view</button>
+	<button class="btn" on:click={openModal}>view</button>
 </li>
 
 <style>
@@ -39,6 +42,10 @@
 		text-overflow: ellipsis;
 		overflow: hidden;
 		white-space: nowrap;
+	}
+
+	a {
+		display: block;
 	}
 
 	.btn {
