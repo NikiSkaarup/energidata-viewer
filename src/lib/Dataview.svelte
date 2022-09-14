@@ -4,7 +4,16 @@
 
 	let datasetValue: dataset | null = null;
 
-	type record = {};
+	type record = {
+		HourUTC: '2020-08-20T20:00:00';
+		HourDK: '2020-08-20T22:00:00';
+		aFRR_DownActivated: 0.0;
+		aFRR_DownPriceDKK: 214.440002;
+		aFRR_DownPriceEUR: 28.799999;
+		aFRR_UpActivated: 0.0;
+		aFRR_UpPriceDKK: 414.429993;
+		aFRR_UpPriceEUR: 55.66;
+	};
 
 	type resp = {
 		total: number;
@@ -63,8 +72,8 @@
 				<p>Loading...</p>
 			{/if}
 			{#if respValue_reactive !== null}
+				<p>Fetched {records.length} of {respValue_reactive.total} records</p>
 				<p>some graph</p>
-				<p>{records.length}</p>
 			{/if}
 		</div>
 	</div>
@@ -96,5 +105,8 @@
 		max-height: 90vh;
 		overscroll-behavior: none;
 		scrollbar-gutter: stable;
+	}
+	h2 {
+		margin-bottom: 1rem;
 	}
 </style>
